@@ -18,8 +18,8 @@ export class RegisterComponent implements OnInit {
   password: string = '';
   phone: number = 0;
   speciality: string = '';
-  gender: string = '';
-  bloodGroup: string = '';
+  gender: string = 'female';
+  bloodGroup: string = 'A+';
   age: number = 0;
   city: string = '';
   address: string = '';
@@ -58,6 +58,8 @@ export class RegisterComponent implements OnInit {
     this.user.geoAddress.longitude = this.longitude;
     this.user.storeName = this.storeName;
     this.user.userType = this.selectedUserType;
+
+    console.log(this.user);
 
     this._userService.saveUser(this.user).subscribe(
       res => {

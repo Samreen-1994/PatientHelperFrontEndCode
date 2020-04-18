@@ -4,13 +4,11 @@
             <h1 style="color: #2B60DE;"><b>Patient Helper</b></h1>
         </div>
         <form class="form-inline" style="float: right;">
-            <label class="sr-only" for="email">Name</label>
-            <input type="text" class="form-control mb-3 mr-sm-3" id="email" placeholder="Email Address"
+            <input name="email" type="text" class="form-control mb-3 mr-sm-3" id="email" placeholder="Email Address"
                 [(ngModel)]="this.loginRequest.email">
 
-            <label class="sr-only" for="password">Username</label>
             <div class="input-group mb-3 mr-sm-3">
-                <input type="password" class="form-control" id="password" placeholder="Password"
+                <input name="password" type="password" class="form-control" id="password" placeholder="Password"
                     [(ngModel)]="this.loginRequest.password">
             </div>
 
