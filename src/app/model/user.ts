@@ -1,5 +1,5 @@
 export class User {
-    userId: number = 0;
+    userId: number;
     firstName: string = '';
     lastName: string = '';
     email: string = '';
@@ -13,8 +13,9 @@ export class User {
     userType: number = -1;
     address: string = '';
     storeName: string = '';
-    geoAddress: GeoAddress = new GeoAddress();
-    deleted = 0;
+    latitude: number = 0;
+    longitude: number = 0;
+    deleted: boolean = false;
 }
 
 export class GeoAddress {

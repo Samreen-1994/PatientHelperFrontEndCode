@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User, GeoAddress } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
   storeName: string = '';
   selectedUserType: number = 1;
 
-  constructor(private _userService: UserService) {
+  constructor(private _userService: UserService, private _toastrService: ToastrService) {
     this.user = new User();
   }
 
@@ -54,8 +55,8 @@ export class RegisterComponent implements OnInit {
     this.user.age = this.age;
     this.user.city = this.city;
     this.user.address = this.address;
-    this.user.geoAddress.latitude = this.latitude;
-    this.user.geoAddress.longitude = this.longitude;
+    this.user.latitude = this.latitude;
+    this.user.longitude = this.longitude;
     this.user.storeName = this.storeName;
     this.user.userType = this.selectedUserType;
 
@@ -63,10 +64,15 @@ export class RegisterComponent implements OnInit {
 
     this._userService.saveUser(this.user).subscribe(
       res => {
-
+        if (res) {
+          this._toastrService.success('account set up successfully, login to continue', 'registeration successfull');
+        }
+        else {
+          this._toastrService.error('there was some error in setting up the account', 'registration error');
+        }
       },
       error => {
-
+        this._toastrService.error('everything is broken', 'Major Error');
       }
     );
   }

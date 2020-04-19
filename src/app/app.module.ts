@@ -10,6 +10,9 @@ import { GoogleMapComponent } from './component/shared/google-map/google-map.com
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     GoogleMapComponent
   ],
   imports: [
+    CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -27,7 +31,14 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCe9bqRYozPZjhgiwuTTrHiXA9l46Q9e-k'
-    })
+    }),
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(
+      {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right',
+      }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
