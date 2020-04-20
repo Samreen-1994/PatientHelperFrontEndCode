@@ -16,7 +16,6 @@ export class UserService {
   }
 
   loginUser(loginRequest: LoginModel): Observable<any> {
-    debugger
     return this._http.post(this.endPoint + "users/loginUser", loginRequest);
   }
 

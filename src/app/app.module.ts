@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { PatientHomeComponent } from './component/patient/patient-home/patient-home.component';
+import { DoctorDetailComponent } from './component/doctor/doctor-detail/doctor-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     NavBarComponent,
     RegisterComponent,
-    GoogleMapComponent
+    GoogleMapComponent,
+    PatientHomeComponent,
+    DoctorDetailComponent
   ],
   imports: [
     CommonModule,

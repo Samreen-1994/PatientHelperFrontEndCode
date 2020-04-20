@@ -17,11 +17,11 @@ export class RegisterComponent implements OnInit {
   lastName: string = '';
   email: string = '';
   password: string = '';
-  phone: number = 0;
+  phone: number;
   speciality: string = '';
   gender: string = 'female';
   bloodGroup: string = 'A+';
-  age: number = 0;
+  age: number;
   city: string = '';
   address: string = '';
   latitude: number = 0;

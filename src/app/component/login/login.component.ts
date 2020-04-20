@@ -35,11 +35,13 @@ export class LoginComponent implements OnInit {
             redirectTo = "doctor-home";
           }
           else if (this.userResponse.userType == 2) {
-            redirectTo = "patient-home";
+            redirectTo = "/app-patient-home";
           }
           else if (this.userResponse.userType == 3) {
             redirectTo = "medical-storehome";
           }
+
+          this._router.navigateByUrl(redirectTo);
         }
         else {
           this._toastrService.error('No User found with provided details', 'Unable to Login');

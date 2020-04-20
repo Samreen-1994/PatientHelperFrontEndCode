@@ -4,11 +4,11 @@ export class User {
     lastName: string = '';
     email: string = '';
     password: string = '';
-    phone: number = 0;
+    phone: number;
     speciality: string = '';
     gender: string = '';
     bloodGroup: string = '';
-    age: number = 0;
+    age: number;
     city: string = '';
     userType: number = -1;
     address: string = '';

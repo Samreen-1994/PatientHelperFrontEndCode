@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Patient Panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container" style="font-family: Raleway;">
+    <div class="row" style="margin-top: 5%;">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Doctors Near me</h5>
+                    <table class="table table-hover" style="font-size: 11px;">
+                        <tr>
+                            <th></th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Speciality</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>City</th>
+                        </tr>
+                        <tr *ngFor="let d of this.nearByDoctors" (click)="viewDoctorDetail(d)">
+                            <td>
+                                <img *ngIf="d.gender=='female'" width="50" height="50"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ8I16gIZZCNYEu6tV2RnpWqwUZ3SUtu7ptlG4M0132HCwiPms&s">
+                                <img *ngIf="d.gender=='male'" width="50" height="50"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMJHyVGdpjlPpAQb1lrAbgp7AG7fdXyo4okOyc7z7LaWCyLzGqIg&s">
+                            </td>
+                            <td>{{d.firstName}}</td>
+                            <td>{{d.lastName}}</td>
+                            <td>{{d.speciality}}</td>
+                            <td>{{d.gender}}</td>
+                            <td>{{d.age}}</td>
+                            <td>{{d.city}}</td>
+                        </tr>
+                        <tr *ngIf="this.nearByDoctors.length==0">
+                            <td style="color: red;">No Doctor available near to you</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <input type="text" class="form-control" placeholder="Search Doctor | Name,City,Speciality"
+                        (keyup.enter)="searchDoctor()" [(ngModel)]="this.doctorSearchText">
+                    <table class="table table-hover" style="font-size: 11px;">
+                        <tr>
+                            <th></th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Speciality</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>City</th>
+                        </tr>
+                        <tr *ngFor="let d of this.searchDoctorResult" (click)="viewDoctorDetail(d)">
+                            <td>
+                                <img *ngIf="d.gender=='female'" width="50" height="50"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ8I16gIZZCNYEu6tV2RnpWqwUZ3SUtu7ptlG4M0132HCwiPms&s">
+                                <img *ngIf="d.gender=='male'" width="50" height="50"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMJHyVGdpjlPpAQb1lrAbgp7AG7fdXyo4okOyc7z7LaWCyLzGqIg&s">
+                            </td>
+                            <td>{{d.firstName}}</td>
+                            <td>{{d.lastName}}</td>
+                            <td>{{d.speciality}}</td>
+                            <td>{{d.gender}}</td>
+                            <td>{{d.age}}</td>
+                            <td>{{d.city}}</td>
+                        </tr>
+                        <tr *ngIf="this.nearByDoctors.length==0">
+                            <td style="color: red;">No Doctor available near to you</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
