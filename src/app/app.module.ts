@@ -15,6 +15,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { PatientHomeComponent } from './component/patient/patient-home/patient-home.component';
 import { DoctorDetailComponent } from './component/doctor/doctor-detail/doctor-detail.component';
+import { ViewmedicalStoreComponent } from './component/patient/viewmedical-store/viewmedical-store.component';
+import { PatientNavbarComponent } from './component/shared/patient/patient-navbar/patient-navbar.component';
+import { CreateAppointmentComponent } from './component/patient/create-appointment/create-appointment.component';
+import { ViewAppointmentComponent } from './component/patient/view-appointment/view-appointment.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { DoctorDetailComponent } from './component/doctor/doctor-detail/doctor-d
     RegisterComponent,
     GoogleMapComponent,
     PatientHomeComponent,
-    DoctorDetailComponent
+    DoctorDetailComponent,
+    ViewmedicalStoreComponent,
+    PatientNavbarComponent,
+    CreateAppointmentComponent,
+    ViewAppointmentComponent
   ],
   imports: [
     CommonModule,

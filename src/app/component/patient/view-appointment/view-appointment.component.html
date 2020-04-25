@@ -1,0 +1,24 @@
+<app-patient-navbar></app-patient-navbar>
+<div class="container" style="font-family: Raleway;margin-top:5%;">
+    <h3>Appointment Requests to Doctors</h3>
+    <table id="appointments">
+        <tr>
+            <th>Appointment Title</th>
+            <th>Details</th>
+            <th>Doctor Name</th>
+            <th>Date/Time</th>
+            <th>Appointment Approved</th>
+            <th>Appointment Completed</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let app of this.appointmentResponse">
+            <td>{{this.app.appointmentTitle}}</td>
+            <td>{{this.app.appointmentDescription}}</td>
+            <td>{{this.app.doctorName}}</td>
+            <td>{{this.app.appointmentSchedule}}</td>
+            <td>{{this.app.appointmentApproved==true? "Yes":"No"}}</td>
+            <td>{{this.app.appointmentCompleted==true? "Yes":"No"}}</td>
+            <td><button class="btn btn-danger" (click)="deleteAppointmentRequest(this.app)">Delete</button></td>
+        </tr>
+    </table>
+</div>

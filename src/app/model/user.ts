@@ -19,6 +19,11 @@ export class User {
 }
 
 export class GeoAddress {
+    public GeoAddress(lat, lng) {
+        this.latitude = lat;
+        this.longitude = lng;
+    }
+
     latitude: number = 0;
     longitude: number = 0;
 }
