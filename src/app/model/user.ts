@@ -16,6 +16,7 @@ export class User {
     latitude: number = 0;
     longitude: number = 0;
     deleted: boolean = false;
+    blocked: boolean = false;
 }
 
 export class GeoAddress {

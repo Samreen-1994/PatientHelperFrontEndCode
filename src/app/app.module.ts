@@ -19,6 +19,11 @@ import { ViewmedicalStoreComponent } from './component/patient/viewmedical-store
 import { PatientNavbarComponent } from './component/shared/patient/patient-navbar/patient-navbar.component';
 import { CreateAppointmentComponent } from './component/patient/create-appointment/create-appointment.component';
 import { ViewAppointmentComponent } from './component/patient/view-appointment/view-appointment.component';
+import { DoctorHomeComponent } from './component/doctor/doctor-home/doctor-home.component';
+import { DoctorNavbarComponent } from './component/shared/doctor/doctor-navbar/doctor-navbar.component';
+import { ViewpatientMedicalstoreRequestsComponent } from './component/patient/viewpatient-medicalstore-requests/viewpatient-medicalstore-requests.component';
+import { MedicalstoreHomeComponent } from './component/medicalstore/medicalstore-home/medicalstore-home.component';
+import { AdminHomeComponent } from './component/admin/admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,12 @@ import { ViewAppointmentComponent } from './component/patient/view-appointment/v
     ViewmedicalStoreComponent,
     PatientNavbarComponent,
     CreateAppointmentComponent,
-    ViewAppointmentComponent
+    ViewAppointmentComponent,
+    DoctorHomeComponent,
+    DoctorNavbarComponent,
+    ViewpatientMedicalstoreRequestsComponent,
+    MedicalstoreHomeComponent,
+    AdminHomeComponent
   ],
   imports: [
     CommonModule,

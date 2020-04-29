@@ -1,14 +1,15 @@
-<app-patient-navbar></app-patient-navbar>
+<app-doctor-navbar></app-doctor-navbar>
 <div class="container" style="font-family: Raleway;margin-top:5%;">
-    <h4>Appointment Requests to Doctors</h4>
+    <h4><b>Appointment Details</b></h4>
     <table class="table table-striped">
-        <tr style="background-color: skyblue;font-size: 9px;">
+        <tr style="background-color: skyblue;">
             <th>Appointment Title</th>
             <th>Details</th>
-            <th>Doctor Name</th>
+            <th>Patient Name</th>
             <th>Date/Time</th>
             <th>Appointment Approved</th>
             <th>Appointment Completed</th>
+            <th></th>
             <th></th>
         </tr>
         <tr *ngFor="let app of this.appointmentResponse">
@@ -18,7 +19,10 @@
             <td>{{this.app.appointmentSchedule}}</td>
             <td>{{this.app.appointmentApproved==true? "Yes":"No"}}</td>
             <td>{{this.app.appointmentCompleted==true? "Yes":"No"}}</td>
-            <td><button class="btn btn-danger" (click)="deleteAppointmentRequest(this.app)">Delete</button></td>
+            <td><button class="btn btn-success" *ngIf="!this.app.appointmentApproved"
+                    (click)="this.approveCompleteAppointment(this.app)">Approve</button></td>
+            <td><button class="btn btn-primary" *ngIf="this.app.appointmentApproved && !this.app.appointmentCompleted"
+                    (click)="this.approveCompleteAppointment(this.app,true)">Complete</button></td>
         </tr>
     </table>
 </div>

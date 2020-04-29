@@ -28,7 +28,7 @@ export class ViewAppointmentComponent implements OnInit {
         this.appointmentResponse = res;
       },
       err => {
-
+        this._toastrService.error('everything is broken');
       }
     );
   }

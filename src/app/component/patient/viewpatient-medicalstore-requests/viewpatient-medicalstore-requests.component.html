@@ -1,0 +1,29 @@
+<div *ngIf="this.loggedInUser.userType==2">
+    <app-patient-navbar></app-patient-navbar>
+</div>
+<div class="container" style="font-family: Calibri;margin-top: 3%;">
+    <table class="table table-bordered">
+        <tr style="background-color: gainsboro;">
+            <th>Name</th>
+            <th>City</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>response</th>
+            <th>Image</th>
+        </tr>
+        <tr *ngFor="let med of this.medicineResponseList">
+            <td>{{med.name}}</td>
+            <td>{{med.city}}</td>
+            <td>{{med.phone}}</td>
+            <td>{{med.email}}</td>
+            <td>{{med.requestText}}</td>
+            <td *ngIf="this.loggedInUser.userType==2">{{med.requestResponse}}</td>
+            <td *ngIf="this.loggedInUser.userType==3"><textarea class="form-control" rows="5"
+                    placeholder="Enter your response" (focus)="med.fieldDisabled=false"
+                    (focusout)="focusOutFunction(med)" [readOnly]="med.fieldDisabled"
+                    [(ngModel)]="med.requestResponse"></textarea></td>
+            <td><img [src]="med.requestImage" width="100" height="100" /></td>
+        </tr>
+    </table>
+</div>

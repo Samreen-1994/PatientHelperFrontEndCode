@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loggedInUser", JSON.stringify(this.userResponse)); //saving the logged in User into session
 
           if (this.userResponse.userType == 0) {
-            redirectTo = "admin-home";
+            redirectTo = "app-admin-home";
           }
           else if (this.userResponse.userType == 1) {
             redirectTo = "doctor-home";
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
             redirectTo = "/app-patient-home";
           }
           else if (this.userResponse.userType == 3) {
-            redirectTo = "medical-storehome";
+            redirectTo = "/app-store-home";
           }
 
           this._router.navigateByUrl(redirectTo);
