@@ -19,4 +19,12 @@ export class UserService {
     return this._http.post(this.endPoint + "users/loginUser", loginRequest);
   }
 
+  getAllnUser(): Observable<any> {
+    return this._http.get(this.endPoint + "users/fetchAllUsers");
+  }
+
+  editUser(user: User): Observable<any> {
+    return this._http.post(this.endPoint + "users/editUser", user);
+  }
+
 }

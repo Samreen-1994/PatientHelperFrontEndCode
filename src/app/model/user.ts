@@ -17,6 +17,7 @@ export class User {
     longitude: number = 0;
     deleted: boolean = false;
     blocked: boolean = false;
+    isedit:boolean=false;
 }
 
 export class GeoAddress {
