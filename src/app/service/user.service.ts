@@ -19,8 +19,8 @@ export class UserService {
     return this._http.post(this.endPoint + "users/loginUser", loginRequest);
   }
 
-  getAllnUser(): Observable<any> {
-    return this._http.get(this.endPoint + "users/fetchAllUsers");
+  getAllnUser(id: number, search: string): Observable<any> {
+    return this._http.get(this.endPoint + "users/fetchAllUsers?userType=" + id + "&userSearch=" + search);
   }
 
   editUser(user: User): Observable<any> {
@@ -28,3 +28,5 @@ export class UserService {
   }
 
 }
+
+// https://localhost:5001 ,44376

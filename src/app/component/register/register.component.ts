@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
           this._toastrService.success('account set up successfully, login to continue', 'registeration successfull');
         }
         else {
-          this._toastrService.error('there was some error in setting up the account', 'registration error');
+          this._toastrService.error('Email Already Exists', 'This email already exists.');
         }
       },
       error => {

@@ -1,5 +1,5 @@
-import { } from 'googlemaps';
-import { Component, OnInit, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
 import { GeoAddress } from 'src/app/model/user';
 
 
@@ -14,51 +14,26 @@ export class GoogleMapComponent implements OnInit {
   address: string = "";
   geoAddress: GeoAddress = new GeoAddress();
 
-  @ViewChild('search') searchElementRef: ElementRef;
   @Output() notifyAddress: EventEmitter<GeoAddress> = new EventEmitter<GeoAddress>();
-  @ViewChild('addresstext') addresstext: any;
 
-  autocompleteInput: string;
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-    this.getPlaceAutocomplete();
+  mapClicked($event: any) {
+    debugger
+    this.geoAddress.latitude = $event.coords.lat;
+    this.geoAddress.longitude = $event.coords.lng;
+
+    // for displaying on the map
+    this.lat = $event.coords.lat;
+    this.lng = $event.coords.lng;
+
+    this.notifyAddress.emit(this.geoAddress);
   }
 
-  private getPlaceAutocomplete() {
-    let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
-
-    google.maps.event.addListener(autocomplete, 'place_changed', () => {
-      debugger
-      let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-      //verify result
-      if (place.geometry === undefined || place.geometry === null) {
-        return;
-      }
-
-      //set latitude, longitude and zoom
-      this.geoAddress.latitude = place.geometry.location.lat();
-      this.geoAddress.longitude = place.geometry.location.lng();
-
-      this.lat = this.geoAddress.latitude;
-      this.lng = this.geoAddress.longitude;
-
-      this.notifyAddress.emit(this.geoAddress);
-    });
+  // to be done
+  getAddress(latitude, longitude) {
   }
-
-  // mapClicked($event: any) {
-  //   this.geoAddress.latitude = $event.coords.lat;
-  //   this.geoAddress.longitude = $event.coords.lng;
-
-  //   // for displaying on the map
-  //   this.lat = $event.coords.lat;
-  //   this.lng = $event.coords.lng;
-
-  //   this.notifyAddress.emit(this.geoAddress);
-  // }
 }

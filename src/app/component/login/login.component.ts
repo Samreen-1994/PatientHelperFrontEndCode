@@ -32,10 +32,20 @@ export class LoginComponent implements OnInit {
             redirectTo = "app-admin-home";
           }
           else if (this.userResponse.userType == 1) {
-            redirectTo = "doctor-home";
+            if (this.userResponse.blocked == true) {
+              this._toastrService.warning("your account is not yet approved by admin");
+            }
+            else {
+              redirectTo = "doctor-home";
+            }
           }
           else if (this.userResponse.userType == 2) {
-            redirectTo = "/app-patient-home";
+            if (this.userResponse.blocked == true) {
+              this._toastrService.warning("you need to confirm your email");
+            }
+            else {
+              redirectTo = "/app-patient-home";
+            }
           }
           else if (this.userResponse.userType == 3) {
             redirectTo = "/app-store-home";

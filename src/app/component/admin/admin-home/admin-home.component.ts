@@ -11,6 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdminHomeComponent implements OnInit {
   userData = new Array<User>();
+  userDataSearch = new Array<User>();
+  searchUserType: number = 2;
+  userSearch: string = "";
+
   constructor(private router: Router, private userService: UserService, private toast: ToastrService) { }
 
   ngOnInit(): void {
@@ -23,8 +27,7 @@ export class AdminHomeComponent implements OnInit {
   }
 
   getAllUsers(): void {
-    debugger;
-    this.userService.getAllnUser().subscribe(
+    this.userService.getAllnUser(this.searchUserType, this.userSearch).subscribe(
       res => {
         this.userData = res;
       },
@@ -35,15 +38,11 @@ export class AdminHomeComponent implements OnInit {
   }
 
   deleteUser(u: User): void {
-    debugger;
-    var user = new User();
-    user.userId = u.userId;
-    user.deleted = true;
-
-    this.userService.editUser(user).subscribe(
+    u.deleted = true;
+    this.userService.editUser(u).subscribe(
       res => {
-        if (res == false) {
-          this.toast.success('Deleted');
+        if (res == true) {
+          this.toast.success('user deleted!');
           this.getAllUsers();
         }
         else {
@@ -60,7 +59,7 @@ export class AdminHomeComponent implements OnInit {
     this.userService.editUser(u).subscribe(
       res => {
         if (res == true) {
-          this.toast.success('Successfully edit');
+          this.toast.success('user edited!');
           this.getAllUsers();
           u.isedit = false;
         }
@@ -74,5 +73,4 @@ export class AdminHomeComponent implements OnInit {
       }
     );
   }
-
 }

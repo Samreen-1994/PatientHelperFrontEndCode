@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" [routerLink]="'/app-store-home'">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" [routerLink]="'/app-admin-home'">Home<span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -18,10 +18,26 @@
 </nav>
 <div class="container" style="margin-top: 3%;">
 
-    <div class="container" style="font-family: Calibri;margin-top:5%;">
+    <div class="container" style="font-family: Tahoma;margin-top:5%;">
         <h4>Edit User Data</h4>
-        <table class="table table-striped"  style="font-size: 11px;">
-            <tr style="background-color: skyblue">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="userType">Select User Type</label>
+                <select id="userType" class="form-control" (change)="this.getAllUsers()" [(ngModel)]="searchUserType">
+                    <option value="2" selected>Patient</option>
+                    <option value="1">Doctor</option>
+                    <option value="3">Medical Store</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="searchBar">Select User</label>
+                <input id="searchBar" type="text" class="form-control" placeholder="Search User"
+                    [(ngModel)]="this.userSearch" (keyup.enter)="this.getAllUsers()">
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped" style="font-size: 12px;margin-top: 2%;">
+            <tr style="background-color: #72b5ff">
 
                 <th> User Type</th>
                 <th>First Name</th>
@@ -30,6 +46,8 @@
                 <th>Phone</th>
                 <th>Address</th>
                 <th>Store Name</th>
+                <th>Age</th>
+                <th>Blocked</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -40,47 +58,59 @@
                 <td *ngIf="this.user.userType==3">Medical Store</td>
 
                 <td *ngIf="!this.user.isedit">{{this.user.firstName}}</td>
-                <td *ngIf="this.user.isedit"> <input type="text" placeholder="First Name" class="form-control input-sm"
+                <td *ngIf="this.user.isedit"> <input type="text" placeholder="First Name"
                         [(ngModel)]="this.user.firstName" /></td>
 
                 <td *ngIf="!this.user.isedit">{{this.user.lastName}}</td>
-                <td *ngIf="this.user.isedit"> <input type="text" placeholder="Last Name" class="form-control input-sm"
-                        [(ngModel)]="this.user.lastName" /></td>
+                <td *ngIf="this.user.isedit"> <input type="text" placeholder="Last Name"
+                        [(ngModel)]="this.user.lastName" />
+                </td>
 
                 <td *ngIf="!this.user.isedit">{{this.user.email}}</td>
-                <td *ngIf="this.user.isedit"> <input type="email" placeholder="Email" class="form-control input-sm" [(ngModel)]="this.user.email" />
+                <td *ngIf="this.user.isedit"> <input type="email" placeholder="Email" [(ngModel)]="this.user.email" />
                 </td>
 
                 <td *ngIf="!this.user.isedit">{{this.user.phone}}</td>
-                <td *ngIf="this.user.isedit"> <input type="text" placeholder="Phone " class="form-control input-sm" [(ngModel)]="this.user.phone" />
+                <td *ngIf="this.user.isedit"> <input type="text" placeholder="Phone " [(ngModel)]="this.user.phone" />
                 </td>
 
                 <td *ngIf="!this.user.isedit">{{this.user.address}}</td>
-                <td *ngIf="this.user.isedit"> <input type="text" placeholder="Address" class="form-control input-sm"
-                        [(ngModel)]="this.user.address" /></td>
+                <td *ngIf="this.user.isedit"> <input type="text" placeholder="Address"
+                        [(ngModel)]="this.user.address" />
+                </td>
 
-                <td>
+                <td *ngIf="!this.user.isedit">
                     <span *ngIf="this.user.userType==3 && !this.user.isedit">
                         {{this.user.storeName}}
                     </span>
                 </td>
-
-                <td> <input type="text" placeholder="First Name" class="form-control input-sm" *ngIf="this.user.userType==3 && this.user.isedit"
-                        [(ngModel)]="this.user.storeName" /></td>
+                <td *ngIf="this.user.isedit"> <input type="text" placeholder="First Name"
+                        *ngIf="this.user.userType==3 && this.user.isedit" [(ngModel)]="this.user.storeName" /></td>
 
                 <td *ngIf="!this.user.isedit">{{this.user.age}}</td>
-                <td *ngIf="this.user.isedit"> <input type="text" class="form-control input-sm" placeholder="First Name" [(ngModel)]="this.user.age" />
+                <td *ngIf="this.user.isedit"> <input type="text" placeholder="First Name" [(ngModel)]="this.user.age" />
                 </td>
 
-                <td><button class="btn btn-danger" (click)="this.user.isedit=false"
-                        *ngIf="this.user.isedit">Cancel</button></td>
+                <td *ngIf="!this.user.isedit">
+                    <span *ngIf="this.user.blocked==false">No</span>
+                    <span *ngIf="this.user.blocked==true">Yes</span>
+                </td>
+                <td *ngIf="this.user.isedit">
+                    <select [(ngModel)]="this.user.blocked">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
 
-                <td><button class="btn btn-primary" (click)="updateUserData(this.user)"
+                <td *ngIf="this.user.isedit"><button class="btn btn-danger btn-sm"
+                        (click)="this.user.isedit=false">Cancel</button></td>
+
+                <td><button class="btn btn-primary btn-sm" (click)="updateUserData(this.user)"
                         *ngIf="this.user.isedit">Save</button>
 
-                <button class="btn btn-primary" (click)="this.user.isedit=true"
+                    <button class="btn btn-primary btn-sm" (click)="this.user.isedit=true"
                         *ngIf="!this.user.isedit">Edit</button></td>
-                <td><button class="btn btn-danger" (click)="deleteUser(this.user)">Delete</button></td>
+                <td><button class="btn btn-danger btn-sm" (click)="deleteUser(this.user)">Delete</button></td>
             </tr>
         </table>
     </div>
