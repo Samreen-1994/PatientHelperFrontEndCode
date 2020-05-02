@@ -40,13 +40,13 @@
             <tr style="background-color: #72b5ff">
 
                 <th> User Type</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th *ngIf="this.searchUserType!=3">First Name</th>
+                <th *ngIf="this.searchUserType!=3">Last Name</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
-                <th>Store Name</th>
-                <th>Age</th>
+                <th *ngIf="this.searchUserType==3">Store Name</th>
+                <th *ngIf="this.searchUserType!=3">Age</th>
                 <th>Blocked</th>
                 <th></th>
                 <th></th>
@@ -57,12 +57,12 @@
                 <td *ngIf="this.user.userType==2">Patient</td>
                 <td *ngIf="this.user.userType==3">Medical Store</td>
 
-                <td *ngIf="!this.user.isedit">{{this.user.firstName}}</td>
-                <td *ngIf="this.user.isedit"> <input type="text" placeholder="First Name"
+                <td *ngIf="!this.user.isedit && this.searchUserType!=3">{{this.user.firstName}}</td>
+                <td *ngIf="this.user.isedit && this.searchUserType!=3"> <input type="text" placeholder="First Name"
                         [(ngModel)]="this.user.firstName" /></td>
 
-                <td *ngIf="!this.user.isedit">{{this.user.lastName}}</td>
-                <td *ngIf="this.user.isedit"> <input type="text" placeholder="Last Name"
+                <td *ngIf="!this.user.isedit && this.searchUserType!=3">{{this.user.lastName}}</td>
+                <td *ngIf="this.user.isedit && this.searchUserType!=3"> <input type="text" placeholder="Last Name"
                         [(ngModel)]="this.user.lastName" />
                 </td>
 
@@ -79,16 +79,17 @@
                         [(ngModel)]="this.user.address" />
                 </td>
 
-                <td *ngIf="!this.user.isedit">
+                <td *ngIf="!this.user.isedit && this.searchUserType==3">
                     <span *ngIf="this.user.userType==3 && !this.user.isedit">
                         {{this.user.storeName}}
                     </span>
                 </td>
-                <td *ngIf="this.user.isedit"> <input type="text" placeholder="First Name"
+                <td *ngIf="this.user.isedit && this.searchUserType==3"> <input type="text" placeholder="Store Name"
                         *ngIf="this.user.userType==3 && this.user.isedit" [(ngModel)]="this.user.storeName" /></td>
 
-                <td *ngIf="!this.user.isedit">{{this.user.age}}</td>
-                <td *ngIf="this.user.isedit"> <input type="text" placeholder="First Name" [(ngModel)]="this.user.age" />
+                <td *ngIf="!this.user.isedit && this.searchUserType!=3">{{this.user.age}}</td>
+                <td *ngIf="this.user.isedit && this.searchUserType!=3"> <input type="text" placeholder="First Name"
+                        [(ngModel)]="this.user.age" />
                 </td>
 
                 <td *ngIf="!this.user.isedit">
